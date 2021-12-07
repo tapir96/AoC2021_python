@@ -25,7 +25,6 @@ def checker(arr0, board):
             y[b]+=1
         if 5 in x or 5 in y:
             c = [i for i in board if i not in z]
-            print(i, j, j*sum(c))
             return i, j, j*sum(c)
 
 arr0, boards0 = parse('input0')
