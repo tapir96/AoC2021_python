@@ -1,6 +1,6 @@
 import numpy as np
 
-d, b = np.loadtxt('input', dtype='str'), []
+d, b = np.loadtxt('input0', dtype='str'), []
 for i in d: b.extend(list(map(int, i[0].split(',') + i[2].split(','))))
 x_p, x_m, y_p, y_m = max(b[0::2]), min(b[0::2]), max(b[1::2]), min(b[1::2])
 tab, d_x = np.zeros((1+x_p-x_m)*(1+y_p-y_m)), x_p-x_m

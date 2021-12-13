@@ -27,12 +27,14 @@ def checker(arr0, board):
             c = [i for i in board if i not in z]
             return i, j, j*sum(c)
 
-arr0, boards0 = parse('input0')
-l = []
+arr0, boards0 = parse('input')
+l, c0 = [], []
 for i, j in enumerate(boards0):
     a, b, c = checker(arr0, j)
     l.append(a)
-print(np.argmin(l))
+    c0.append(c)
+#print(c)
+print(np.argmax(l), c0[np.argmax(l)])
 
 
 
