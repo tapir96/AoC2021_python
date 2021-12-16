@@ -39,6 +39,8 @@ def smart(x,y):
 xy_grid = [(x, y) for x in range(dx_len) for y in range(dy_len)]
 for x, y in xy_grid:
     l1 = smart(x, y)
+    print(x, y, l1, dx_len, dy_len)
+    #print(d[l1[0][0],l1[0][1]])
     if all(d[x][y] < np.array([d[i][j] for i, j in l1])):
         l0.append((x, y, d[x][y]))
 
