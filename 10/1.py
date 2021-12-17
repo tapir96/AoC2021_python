@@ -9,14 +9,21 @@ bra_d = {')': 3, ']': 57, '>': 1197, '}': 25137}
 zopa = []
 for i in d:
     i_mod = list(i)
-    for j in range(int(len(i)/2)):
-        for x, y in enumerate(i_mod[:-1-2*j]):
-            if l_bra.get(y) == i_mod[x+1+2*j]:
-                if i_mod[1+x:x+1+2*j].count('*') == len(i_mod[1+x:x+1+2*j]):
-                    i_mod[x] = '*'
-                    i_mod[x+1+2*j] = '*'
     print(i)
-    print(''.join(i_mod))
+    for j in range(int(len(i)/2)):
+        l_rm = []
+        for x, y in enumerate(i_mod[:-1]):
+            if l_bra.get(y) == i_mod[x+1]:
+                l_rm += [x, x+1]
+        i_mod = [i_mod[k] for k in range(len(i_mod)) if k not in l_rm]
+#                i_mod[x] = '*'
+#                i_mod[x] = '*'
+        print(''.join(i_mod))
+#        for x, y in enumerate(i_mod[:-1-2*j]):
+#            if l_bra.get(y) == i_mod[x+1+2*j]:
+#                if i_mod[1+x:x+1+2*j].count('*') == len(i_mod[1+x:x+1+2*j]):
+#                    i_mod[x] = '*'
+#                    i_mod[x+1+2*j] = '*'
     for j in i_mod:
         if r_bra.get(j):
             zopa.append(j)
