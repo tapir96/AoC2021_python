@@ -1,17 +1,10 @@
 import numpy as np
 
-d = np.loadtxt('input1', dtype='str')
+d = np.loadtxt('input', dtype='str')
 brac = '()<>[]{}'
-#brac_d = {brac[i] : brac[i+1] for i in range(len(brac))[::2]}
-#brac_d.update({brac[i] : brac[i-1] for i in range(len(brac))[1::2]})
 l_bra = {brac[i] : brac[i+1] for i in range(len(brac))[::2]}
 r_bra = {brac[i] : brac[i-1] for i in range(len(brac))[1::2]}
 bra_d = {')': 3, ']': 57, '>': 1197, '}': 25137} 
-#print(l_bra)
-#print(brac_d)
-#dic_b = {i[1]: i[0] for i in enumerate('()<>[]{}')}
-
-#print(dic_b)
 
 zopa = []
 for i in d:
@@ -22,10 +15,16 @@ for i in d:
                 if i_mod[1+x:x+1+2*j].count('*') == len(i_mod[1+x:x+1+2*j]):
                     i_mod[x] = '*'
                     i_mod[x+1+2*j] = '*'
+    print(i)
+    print(''.join(i_mod))
     for j in i_mod:
         if r_bra.get(j):
             zopa.append(j)
+            print(j, 'kakakakkakakakaa')
             break
+    print(' ')
+
+
 #    print(i)
 #    print(''.join(i_mod), zopa[-1], len(zopa))
 #    print(' ')
