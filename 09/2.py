@@ -22,7 +22,6 @@ def get_bottom():
         l2 = smart(y, x)
         if all(d[y][x] < np.array([d[i][j] for i, j, _ in l2])):
             l0.append((y, x, int(d[y][x])))
-
     return l0
 
 
@@ -30,8 +29,7 @@ def get_nines(t1, l_ext):
     l4 = []
     for i in t1:
         l4 += smart(i[0], i[1])
-    l4 = [i for i in l4 if i[2] != 9]
-    l4 = [i for i in l4 if i not in l_ext]
+    l4 = [i for i in l4 if i[2] != 9 and i not in l_ext]
     l_ext += l4
     return list(set(l4)), list(set(l_ext))
 
@@ -44,7 +42,7 @@ def get_basin():
             l2, l_ext = get_nines(l2, l_ext)
         l1.append(len(l_ext))
     l1_sort = sorted(l1)
-    print(l1_sort[-1]*l1_sort[-2]*l1_sort[-3])
+    print(np.prod(l1_sort[-3:]))
 
 
 get_basin()
