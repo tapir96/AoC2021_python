@@ -6,6 +6,7 @@ brac = '()<>[]{}'
 #brac_d.update({brac[i] : brac[i-1] for i in range(len(brac))[1::2]})
 l_bra = {brac[i] : brac[i+1] for i in range(len(brac))[::2]}
 r_bra = {brac[i] : brac[i-1] for i in range(len(brac))[1::2]}
+bra_d = {')': 3, ']': 57, '>': 1197, '}': 25137} 
 #print(l_bra)
 #print(brac_d)
 #dic_b = {i[1]: i[0] for i in enumerate('()<>[]{}')}
@@ -44,8 +45,12 @@ for i in d:
 #    for j in reversed(range(len(i_mod[:-1]))):
 #        if i_mod[j] == '*':
 #            i_mod[j+1] = '*'
-        
+
 print(zopa)
+points = 0
+for i in zopa:
+    points += bra_d[i]
+print(points)
 #    print(i)
 #    print(''.join(i_mod))
 #    print(' ')
