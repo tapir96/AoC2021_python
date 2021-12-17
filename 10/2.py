@@ -23,4 +23,3 @@ for i in d:
             break
 
 print(sorted(brac1)[int(len(brac1)/2)])
-
