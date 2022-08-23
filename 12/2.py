@@ -14,29 +14,55 @@ with open('./input0', 'r') as file:
 def generate_paths(path_dic, path):
     paths = []
 
-    if 'end' in path or 'end2' in path:
+    if 'end' in path:
         return paths
 
     routes = path_dic[path[-1]]
-    small = {i: path.count(i) for i in path if i.islower()} 
+    # small = {i: path.count(i) for i in path if i.islower()} 
     for route in routes:
+        small = {i: path.count(i) for i in path if i.islower()} 
+        if route not in small.keys():
+            small[route] = 0
         if 'start' in route:
             continue
         if 'end' in route:
             paths.append(path + [route])
             continue
 
-        if route.islower() and 2 in small.values():
-            print('wind', route, small)
+        if len(path) == 6 and path[2] == 'b' and 'c' in path and 'A' in path:
+            print('--- bogi 1 ---')
+            print(path, route, routes)
+            print(small)
+            print(route.islower(), 2 in small.values(), small[route] in (1, 2))
+            print(route.islower() and 2 in small.values() and small[route] in (1, 2))
+            print('--- bogi 2 ---')
+
+        if route.islower() and 2 in small.values() and small[route] in (1, 2):
             continue
+        
         elif route.islower() and route not in ('start', 'end'):
-            if route not in small.keys():
-                small[route] = 0
+            if small[route] == 2:
+                print(' ---- ')
+                print(path, route)
+                print('small', small)
+                print(route.islower(), 2 in small.values(), route in small.keys(), small[route] != 2)
+                print(route in small.keys(), path, list(small.keys()))
+                print(' ---- ')
+                exit('z')
             small[route] += 1
-        # if route.islower() and route in path:
-        #     paths.append(path + [route] + ['end2'])
-        #     continue
+
+        if sum(['b'== kk for kk in path]) == 2 and route == 'b':
+            print(' ---- ')
+            print(path, route)
+            print('small', small)
+            print(route.islower(), 2 in small.values(), route in small.keys(), small[route] != 2)
+            print(route in small.keys(), path, list(small.keys()))
+            print(' ---- ')
+            exit('hike')
         paths.append(path + [route])
+        if len(path) == 6 and path[2] == 'c' and 'b' in path and 'A' in path:
+            print(path + [route])
+            print('--- bogi 3 ---')
 
     return paths
 
@@ -51,16 +77,16 @@ while paths0:
         paths1 = generate_paths(path_dic, path)
         paths2 += paths1
     print('bang')
-    print(paths2)
+    for zzz in paths2:
+        print(','.join(zzz))
     for idx, path in enumerate(paths2):
         if 'end' in path:
-            print('fire', path)
             paths.append(path)
     paths0 = paths2
     paths2 = []
 
     counter += 1
-    if counter == 9:
+    if counter == 14:
         print('               ')
         for path in paths:
             print(path)
@@ -68,7 +94,7 @@ while paths0:
 
 print(' --------woh-------- ')
 for path in paths:
-    print(path)
+    print(','.join(path))
 print(len(paths))
 exit('huh')
 print(paths)
